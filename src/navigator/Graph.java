@@ -19,6 +19,12 @@ public class Graph {
         readWaypoints(dataFolder);
     }
 
+    public List<Link> links() {
+        List<Link> out = new ArrayList<>(links.size() * 2);
+        links.forEach(out::addAll);
+        return out;
+    }
+
     private void readNodes(String dataFolder) {
         try {
             DataInputStream inStream = new DataInputStream(new BufferedInputStream(new FileInputStream(dataFolder + "/nodes.bin")));
@@ -27,7 +33,7 @@ public class Graph {
                 int nodeID = inStream.readInt();
                 int x = inStream.readInt();
                 int y = inStream.readInt();
-                nodeMap.put(nodeID, new Node(x, y));
+                nodeMap.put(nodeID, new Node(nodeID, x, y));
             }
             inStream.close();
         }
@@ -53,8 +59,14 @@ public class Graph {
                 ArrayList<Link> links = new ArrayList<>(oneway);
                 Node start = nodeMap.get(startNodeID);
                 Node end = nodeMap.get(endNodeID);
-                links.add(new Link(name, start, end, length));
-                if (oneway == 2) links.add(new Link(name, end, start, length));
+                Link l1 = new Link(name, linkID, start, end, length);
+                links.add(l1);
+                nodeMap.get(startNodeID).addNeighbor(l1);
+                if (oneway == 2) {
+                    Link l2 = new Link(name, linkID, end, start, length);
+                    links.add(l2);
+                    nodeMap.get(endNodeID).addNeighbor(l2);
+                }
                 linkMap.put(linkID, links);
             }
             linksStream.close();
@@ -87,7 +99,7 @@ public class Graph {
         }
     }
 
-    // returns the navigator.Node closest to the given X and Y coordinates (OK to be O(N))
+    // returns the Node closest to the given X and Y coordinates (OK to be O(N))
     public Node findClosestNode(int targetX, int targetY) {
         //TODO: write the findClosestNode function
         double smallestDist = Double.POSITIVE_INFINITY;
@@ -105,7 +117,31 @@ public class Graph {
 
     // given two nodes, finds the shortest path between then using Dijkstra's Algorithm
     public List<Link> findPath(Node startNode, Node endNode) {
-        //TODO: write the findPath function, implementing Dijkstra's Algorithm
-        return null;
+        nodes.forEach(Node::resetPath);
+        startNode.shortestPathLength = 0;
+
+        PriorityQueue<Node> frontier = new PriorityQueue<>();
+        frontier.add(startNode);
+        while (!frontier.isEmpty()) {
+            Node best = frontier.poll();
+            if (best.equals(endNode)) break;
+            else {
+                for (Link neighbor : best.neighbors) {
+                    if (best.shortestPathLength + neighbor.length < neighbor.end.shortestPathLength) {
+                        neighbor.end.shortestPathLength = best.shortestPathLength + neighbor.length;
+                        neighbor.end.bestInbound = neighbor;
+                        frontier.add(neighbor.end);
+                    }
+                }
+            }
+        }
+
+        List<Link> path = new LinkedList<>();
+        Node currentNode = endNode;
+        while (!currentNode.equals(startNode)) {
+            path.add(0, currentNode.bestInbound);
+            currentNode = currentNode.bestInbound.start;
+        }
+        return path;
     }
 }

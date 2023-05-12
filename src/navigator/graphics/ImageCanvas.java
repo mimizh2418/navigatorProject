@@ -20,8 +20,7 @@ import java.awt.event.*;
 
  */
 
-public class ImageCanvas extends JPanel
-{
+public class ImageCanvas extends JPanel {
 
 	//**********************************************************************
 	// Constructor: takes the width and height you want for this canvas

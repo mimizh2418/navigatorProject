@@ -1,17 +1,20 @@
 package navigator.graphics;
 
+import navigator.Graph;
+import navigator.Node;
+import navigator.Link;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 
-public class ViewCanvas extends ImageCanvas implements MouseListener, MouseMotionListener
-{
+public class ViewCanvas extends ImageCanvas implements MouseListener, MouseMotionListener {
     private Graph graph;
     private Node startNode = null, endNode = null;
-    private java.util.List<Link> path = null;
+    private List<Link> path = null;
     private boolean clickSetsStart = true;
 
-    ViewCanvas(Graph graph, int width, int height)
-    {
+    public ViewCanvas(Graph graph, int width, int height) {
         super(width, height);
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -21,13 +24,12 @@ public class ViewCanvas extends ImageCanvas implements MouseListener, MouseMotio
     @Override
     public void paintComponent(Graphics pen) {
         Graphics2D pen2 = (Graphics2D) pen.create();
+        pen2.clearRect(0, 0, getWidth(), getHeight());
 
-        //TODO: Draw all of the links in the graph
-
-        //TODO: Draw the startNode if it isn't null
-        //TODO: Draw the endNode if it isn't null
-        //TODO: Draw the path if it isn't null
-
+        graph.links().forEach((Link l) -> l.draw(pen2, false));
+        if (path != null) path.forEach((Link l) -> l.draw(pen2, true));
+        if (startNode != null) startNode.draw(pen2);
+        if (endNode != null) endNode.draw(pen2);
     }
 
     public void mousePressed(MouseEvent event)
