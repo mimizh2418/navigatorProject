@@ -30,11 +30,11 @@ public class Node implements Comparable<Node> {
         if (neighbor.start.equals(this)) neighbors.add(neighbor);
     }
 
-    public void draw(Graphics2D pen) {
+    public void draw(Graphics2D pen, boolean isStart) {
         pen.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        pen.setColor(Color.GREEN);
-        int r = 5;
-        pen.fillOval(x - r, y - r, r, r);
+        pen.setColor(isStart ? Color.GREEN : Color.RED);
+        int r = 3;
+        pen.fillOval(x - r, y - r, 2*r, 2*r);
     }
 
     @Override
