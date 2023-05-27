@@ -1,4 +1,4 @@
-package navigator;
+package navigator.graph;
 
 import java.util.*;
 import java.io.*;

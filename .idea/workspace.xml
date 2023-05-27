@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9527993a-80bd-4bae-b6b1-47383a4ee7a9" name="Changes" comment="feat: pathfinding works">
-      <change afterPath="$PROJECT_DIR$/src/navigator/ui/ControlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="9527993a-80bd-4bae-b6b1-47383a4ee7a9" name="Changes" comment="feat: stuff is better">
+      <change afterPath="$PROJECT_DIR$/src/navigator/ui/MapType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/navigator/ui/PathPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/Link.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Link.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/graphics/ImageCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/ImageCanvas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/graphics/ViewCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/ViewCanvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/Waypoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Waypoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/ui/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/ControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/ui/ViewCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/ViewCanvas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +25,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -50,9 +53,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -64,7 +67,7 @@
   </component>
   <component name="RunManager">
     <configuration name="navigator" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="navigator.Main" />
       <module name="MapsProject" />
@@ -94,7 +97,12 @@
       <workItem from="1683858429875" duration="13785000" />
       <workItem from="1683919230560" duration="968000" />
       <workItem from="1684181428946" duration="4220000" />
-      <workItem from="1684257824687" duration="14234000" />
+      <workItem from="1684257824687" duration="20047000" />
+      <workItem from="1684710948778" duration="4876000" />
+      <workItem from="1684947114430" duration="5595000" />
+      <workItem from="1684987317755" duration="776000" />
+      <workItem from="1685115413993" duration="1196000" />
+      <workItem from="1685154284777" duration="8481000" />
     </task>
     <task id="LOCAL-00001" summary="feat: pathfinding works">
       <created>1683863374613</created>
@@ -103,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683863374613</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: stuff is better">
+      <created>1684513842078</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1684513842079</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +126,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: pathfinding works" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pathfinding works" />
+    <MESSAGE value="feat: stuff is better" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: stuff is better" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MapsProject$navigator.ic" NAME="navigator Coverage Results" MODIFIED="1684710438680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

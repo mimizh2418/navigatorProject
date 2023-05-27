@@ -1,8 +1,8 @@
 package navigator.ui;
 
-import navigator.Graph;
-import navigator.Node;
-import navigator.Link;
+import navigator.graph.Graph;
+import navigator.graph.Node;
+import navigator.graph.Link;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,14 +54,19 @@ public class ViewCanvas extends ImageCanvas implements MouseListener, MouseMotio
                 reset();
             }
         }
+        clickSetsStart = true;
         repaint();
+    }
+
+    public List<Link> getGeneratedPath() {
+        return path;
     }
 
     @Override
     public void paintComponent(Graphics pen) {
         super.paintComponent(pen);
         Graphics2D pen2 = (Graphics2D) pen.create();
-        if (mapImage != null) pen2.drawImage(mapImage, 0, 0, getWidth(), getHeight(), null);
+        if (mapImage != null) pen2.drawImage(mapImage, 0, 0, mapImage.getWidth()/2, mapImage.getHeight()/2, null);
         if (path != null) path.forEach((Link l) -> l.draw(pen2, true));
 
         if (startNode != null) startNode.draw(pen2, true);
