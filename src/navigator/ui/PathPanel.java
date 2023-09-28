@@ -1,6 +1,7 @@
 package navigator.ui;
 
 import navigator.graph.Link;
+import navigator.utils.RoadNameShortener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,64 +33,21 @@ public class PathPanel extends JPanel {
         double runningLength = -1;
         double totalPathLength = 0;
         for (Link l : path) {
-            if (!prevPathname.equals(l.name)) {
+            if (!prevPathname.equals(l.toString())) {
                 if (runningLength >= 0) {
-                    directions.append(String.format("%s - %.2f mi%n", shortenName(prevPathname), runningLength));
+                    directions.append(String.format("%s - %.2f mi%n", RoadNameShortener.shorten(prevPathname), runningLength));
                     totalPathLength += runningLength;
                 }
-                runningLength = l.length;
-                prevPathname = l.name;
+                runningLength = l.length();
+                prevPathname = l.toString();
             } else {
-                runningLength += l.length;
+                runningLength += l.length();
             }
         }
-        directions.append(String.format("%s - %.2f mi%n", shortenName(prevPathname), runningLength));
+        directions.append(String.format("%s - %.2f mi%n", RoadNameShortener.shorten(prevPathname), runningLength));
         totalPathLength += runningLength;
         pathLengthLabel.setText(String.format("Route length: %.2f %s", totalPathLength, "mi"));
         pathStats.setText(directions.toString());
-    }
-
-    private String shortenName(String streetName) {
-        if (streetName.isEmpty()) return "Unnamed Rd";
-        StringBuilder shortened = new StringBuilder();
-        String[] words = streetName.split(" ");
-
-        String direction = words[0];
-        String shortDirect = switch (direction) {
-            case "North" -> "N";
-            case "Northwest" -> "NW";
-            case "Northeast" -> "NE";
-            case "West" -> "W";
-            case "East" -> "E";
-            case "South" -> "S";
-            case "Southwest" -> "SW";
-            case "Southeast" -> "SE";
-            default -> "";
-        };
-        shortened.append(shortDirect);
-        if (!shortDirect.isEmpty()) shortened.append(" ");
-
-        for (int i = shortDirect.isEmpty() ? 0 : 1; i < words.length - 1; i++) {
-            shortened.append(words[i]).append(" ");
-        }
-
-        String streetType = words[words.length - 1];
-        String shortStreet = switch (streetType) {
-            case "Street" -> "St";
-            case "Road" -> "Rd";
-            case "Lane" -> "Ln";
-            case "Drive" -> "Dr";
-            case "Avenue" -> "Ave";
-            case "Court" -> "Ct";
-            case "Center" -> "Ctr";
-            case "Boulevard" -> "Blvd";
-            case "Highway" -> "Hwy";
-            case "Freeway" -> "Fwy";
-            default -> streetType;
-        };
-        shortened.append(shortStreet);
-
-        return shortened.toString();
     }
 
     public void reset() {

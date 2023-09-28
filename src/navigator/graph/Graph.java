@@ -7,7 +7,7 @@ public class Graph {
     private final HashMap<Integer, Node> nodeMap;
     private final HashMap<Integer, Link[]> linkMap;
     private final ArrayList<Node> nodes;
-    public final ArrayList<Link> links;
+    private final ArrayList<Link> links;
 
     public Graph(String dataFolder) {
         nodes = new ArrayList<>();
@@ -19,7 +19,7 @@ public class Graph {
         readWaypoints(dataFolder);
     }
 
-    public List<Link> links() {
+    public List<Link> getLinks() {
         return links;
     }
 
@@ -102,7 +102,7 @@ public class Graph {
         double smallestDist = Double.POSITIVE_INFINITY;
         Node closest = null;
         for (Node node : nodes) {
-            double dist = Math.hypot(targetX - node.x, targetY - node.y);
+            double dist = Math.hypot(targetX - node.x(), targetY - node.y());
             if (dist < smallestDist) {
                 smallestDist = dist;
                 closest = node;
@@ -115,18 +115,18 @@ public class Graph {
     // given two nodes, finds the shortest path between then using Dijkstra's Algorithm
     public List<Link> findPath(Node startNode, Node endNode) {
         nodes.forEach(Node::resetPath);
-        startNode.shortestPathLength = 0;
+        startNode.setBestPathLength(0);
         PriorityQueue<Node> frontier = new PriorityQueue<>();
 
         frontier.add(startNode);
         while (!frontier.isEmpty()) {
             Node best = frontier.poll();
             if (best.equals(endNode)) break;
-            for (Link neighbor : best.neighbors) {
-                if (best.shortestPathLength + neighbor.length < neighbor.end.shortestPathLength) {
-                    neighbor.end.shortestPathLength = best.shortestPathLength + neighbor.length;
-                    neighbor.end.bestInbound = neighbor;
-                    frontier.add(neighbor.end);
+            for (Link neighbor : best.getNeighbors()) {
+                if (best.getBestPathLength() + neighbor.length() < neighbor.getEnd().getBestPathLength()) {
+                    neighbor.getEnd().setBestPathLength(best.getBestPathLength() + neighbor.length());
+                    neighbor.getEnd().setBestInboundLink(neighbor);
+                    frontier.add(neighbor.getEnd());
                 }
             }
         }
@@ -134,9 +134,9 @@ public class Graph {
         List<Link> path = new LinkedList<>();
         Node currentNode = endNode;
         while (!currentNode.equals(startNode)) {
-            if (currentNode.bestInbound == null) return null;
-            path.add(0, currentNode.bestInbound);
-            currentNode = currentNode.bestInbound.start;
+            if (currentNode.getBestInboundLink() == null) return null;
+            path.add(0, currentNode.getBestInboundLink());
+            currentNode = currentNode.getBestInboundLink().getStart();
         }
         return path;
     }

@@ -9,4 +9,9 @@ public enum MapType {
     MapType(String filename) {
         this.filename = filename;
     }
+
+    @Override
+    public String toString() {
+        return super.toString().replace('_', ' ');
+    }
 }

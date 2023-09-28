@@ -29,7 +29,7 @@ public class ViewCanvas extends ImageCanvas implements MouseListener, MouseMotio
         mapImage = new BufferedImage(getWidth()*2, getHeight()*2, BufferedImage.TYPE_INT_ARGB);
         Graphics2D pen = mapImage.createGraphics();
         pen.setColor(Color.WHITE);
-        graph.links().forEach((Link l) -> l.draw(pen, false));
+        graph.getLinks().forEach((Link l) -> l.draw(pen, false));
     }
 
     public void setGraph(Graph graph) {

@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9527993a-80bd-4bae-b6b1-47383a4ee7a9" name="Changes" comment="feat: stuff is better">
-      <change afterPath="$PROJECT_DIR$/src/navigator/ui/MapType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/navigator/ui/PathPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9527993a-80bd-4bae-b6b1-47383a4ee7a9" name="Changes" comment="feat: added a path statistics panel">
+      <change afterPath="$PROJECT_DIR$/src/navigator/utils/RoadNameShortener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Link.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/Waypoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Waypoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigator/ui/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/ControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/graph/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Link.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/graph/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/graph/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/ui/MapType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/MapType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigator/ui/PathPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/PathPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigator/ui/ViewCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigator/ui/ViewCanvas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,24 +39,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/41vin/Downloads/ZeFlix",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\41vin\Documents\School\Computer Science\MapsProject\src" />
@@ -102,7 +100,8 @@
       <workItem from="1684947114430" duration="5595000" />
       <workItem from="1684987317755" duration="776000" />
       <workItem from="1685115413993" duration="1196000" />
-      <workItem from="1685154284777" duration="8481000" />
+      <workItem from="1685154284777" duration="17318000" />
+      <workItem from="1695140166350" duration="638000" />
     </task>
     <task id="LOCAL-00001" summary="feat: pathfinding works">
       <created>1683863374613</created>
@@ -118,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684513842079</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: added a path statistics panel">
+      <created>1685203341096</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685203341096</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +133,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: pathfinding works" />
     <MESSAGE value="feat: stuff is better" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: stuff is better" />
+    <MESSAGE value="feat: added a path statistics panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added a path statistics panel" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MapsProject$navigator.ic" NAME="navigator Coverage Results" MODIFIED="1684710438680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

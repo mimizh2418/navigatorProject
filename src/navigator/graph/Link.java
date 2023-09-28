@@ -5,10 +5,10 @@ import java.util.*;
 import java.util.List;
 
 public class Link {
-    public final Node start;
-    public final Node end;
-    public final String name;
-    public final double length;
+    private final Node start;
+    private final Node end;
+    private final String name;
+    private final double length;
     private final List<Waypoint> waypoints;
     private final int id;
 
@@ -19,6 +19,18 @@ public class Link {
         this.length = length;
         this.id = id;
         waypoints = new ArrayList<>();
+    }
+
+    public Node getStart() {
+        return start;
+    }
+
+    public Node getEnd() {
+        return end;
+    }
+
+    public double length() {
+        return length;
     }
 
     public void addWaypoint(Waypoint waypoint) {
@@ -47,5 +59,10 @@ public class Link {
         if (o == null || getClass() != o.getClass()) return false;
         Link link = (Link) o;
         return id == link.id && start.equals(link.start);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
